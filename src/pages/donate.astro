@@ -1,15 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-// PLACEHOLDER — replace with real Stripe Payment Link URL
-const stripeUrl = "#";
-const paypalUrl = "https://www.paypal.com/ncp/payment/N5GV83928V65L";
+const paypalBusinessId = "N5GV83928V65L";
 
 const tiers = [
-  { amount: "$25",  label: "Trail Supporter",   description: "Helps maintain the trail and signage." },
-  { amount: "$50",  label: "Creek Keeper",       description: "Supports ongoing trail improvements." },
-  { amount: "$100", label: "Chapel Builder",     description: "Directly funds the Memorial Chapel." },
-  { amount: "Any",  label: "Your Own Amount",    description: "Every gift, large or small, makes a difference." },
+  { amount: 25,    label: "Trail Supporter",  description: "Helps maintain the trail and signage." },
+  { amount: 50,    label: "Creek Keeper",      description: "Supports ongoing trail improvements." },
+  { amount: 100,   label: "Chapel Builder",    description: "Directly funds the Memorial Chapel." },
+  { amount: null,  label: "Your Own Amount",   description: "Every gift, large or small, makes a difference." },
 ];
 ---
 
@@ -20,7 +18,7 @@ const tiers = [
 
   <!-- Hero -->
   <section class="bg-forest-textured text-parchment py-20 hero-border">
-    <div class="section-container">
+    <div class="section-container pl-8 sm:pl-12">
       <span class="eyebrow-light">501(c)(3) Nonprofit</span>
       <h1 class="font-display text-section text-parchment mb-4">Donate to the Vision</h1>
       <p class="text-parchment-dark text-lg max-w-xl">
@@ -66,42 +64,69 @@ const tiers = [
     </div>
   </section>
 
-  <!-- Giving tiers -->
+  <!-- Giving tiers + donate button -->
   <section class="section-pad bg-parchment-dark">
     <div class="section-container">
       <span class="eyebrow">Ways to Give</span>
-      <h2 class="font-display text-section text-forest mb-8">Choose Your Gift</h2>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
-        {tiers.map((tier) => (
-          <div class="bg-parchment border border-stone-light rounded-sm p-6 text-center flex flex-col">
-            <span class="font-display text-4xl text-forest mb-2">{tier.amount}</span>
+      <h2 class="font-display text-section text-forest mb-3">Choose Your Gift</h2>
+      <p class="text-ink-soft mb-8">Select an amount below, then click Donate with PayPal.</p>
+
+      <!-- Tier selector -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8" id="tier-grid">
+        {tiers.map((tier, i) => (
+          <button
+            class="tier-btn bg-parchment border-2 border-stone-light rounded-sm p-6 text-center flex flex-col
+                   hover:border-forest transition-colors duration-200 cursor-pointer"
+            data-amount={tier.amount ?? ""}
+            data-index={i}
+          >
+            <span class="font-display text-4xl text-forest mb-2">
+              {tier.amount ? `$${tier.amount}` : "Any"}
+            </span>
             <span class="font-ui font-semibold text-ink text-sm mb-2">{tier.label}</span>
             <p class="text-stone text-sm leading-snug flex-1">{tier.description}</p>
-          </div>
+          </button>
         ))}
       </div>
 
-      <!-- Donate buttons -->
-      <div class="flex flex-col sm:flex-row gap-4 items-center">
+      <!-- Custom amount input (shown when "Any" is selected) -->
+      <div id="custom-amount-wrapper" class="hidden mb-8 max-w-xs">
+        <label for="custom-amount" class="font-ui text-sm font-semibold text-ink mb-2 block">
+          Enter your amount (USD)
+        </label>
+        <div class="flex items-center border-2 border-forest rounded-sm overflow-hidden">
+          <span class="bg-forest text-parchment px-4 py-3 font-display text-lg">$</span>
+          <input
+            id="custom-amount"
+            type="number"
+            min="1"
+            step="1"
+            placeholder="0"
+            class="flex-1 px-4 py-3 bg-parchment text-ink font-ui text-lg focus:outline-none"
+          />
+        </div>
+      </div>
+
+      <!-- Donate button -->
+      <div class="flex flex-col sm:flex-row gap-4 items-start">
         <a
-          href={stripeUrl}
-          class="btn-donate text-center w-full sm:w-auto"
-          aria-label="Donate via Stripe — supports Apple Pay and Google Pay"
-        >
-          Donate with Card / Apple Pay / Google Pay
-        </a>
-        <a
-          href={paypalUrl}
+          id="paypal-btn"
+          href={`https://www.paypal.com/ncp/payment/${paypalBusinessId}`}
           target="_blank"
           rel="noopener noreferrer"
-          class="btn-secondary text-center w-full sm:w-auto"
+          class="btn-donate text-center"
           aria-label="Donate via PayPal"
         >
           Donate with PayPal
         </a>
       </div>
 
-      <p class="text-sm text-stone font-ui mt-6 text-center">
+      <!-- Selected amount display -->
+      <p id="selected-label" class="text-sm text-stone font-ui mt-4 hidden">
+        Selected: <span id="selected-amount-text" class="font-semibold text-forest"></span>
+      </p>
+
+      <p class="text-sm text-stone font-ui mt-6">
         🔒 All donations are processed securely. The John Hendrix Memorial Prayer Walk is a 501(c)(3)
         nonprofit organization. <strong>All donations are tax deductible.</strong>
       </p>
@@ -112,7 +137,7 @@ const tiers = [
   <section class="section-pad bg-parchment">
     <div class="section-container text-center max-w-2xl mx-auto">
       <img
-        src="/images/photo-of-deer.jpeg"
+        src="/images/photo-of-deer.jpg"
         alt="Wildlife on the John Hendrix Memorial Prayer Walk trail"
         loading="lazy"
         width="600"
@@ -129,3 +154,82 @@ const tiers = [
   </section>
 
 </Layout>
+
+<script>
+  const paypalBase = "https://www.paypal.com/ncp/payment/N5GV83928V65L";
+  const tierBtns = document.querySelectorAll('.tier-btn');
+  const paypalBtn = document.getElementById('paypal-btn') as HTMLAnchorElement;
+  const customWrapper = document.getElementById('custom-amount-wrapper');
+  const customInput = document.getElementById('custom-amount') as HTMLInputElement;
+  const selectedLabel = document.getElementById('selected-label');
+  const selectedAmountText = document.getElementById('selected-amount-text');
+
+  let selectedAmount: number | null = null;
+  let isCustom = false;
+
+  // Selected tier styles
+  const activeClasses = ['border-forest', 'bg-forest', 'text-parchment'];
+
+  function selectTier(btn: Element) {
+    // Reset all buttons
+    tierBtns.forEach(b => {
+      b.classList.remove('border-forest', 'bg-forest');
+      b.querySelectorAll('.text-forest, .text-ink, .text-stone').forEach(el => {
+        (el as HTMLElement).style.color = '';
+      });
+    });
+
+    // Highlight selected
+    btn.classList.add('border-forest', 'bg-forest');
+    btn.querySelectorAll('span, p').forEach(el => {
+      (el as HTMLElement).style.color = '#F7F3EC';
+    });
+
+    const amount = (btn as HTMLElement).dataset.amount;
+    isCustom = amount === "";
+
+    // Show/hide custom input
+    customWrapper?.classList.toggle('hidden', !isCustom);
+
+    if (!isCustom && amount) {
+      selectedAmount = parseInt(amount);
+      updatePayPalLink(selectedAmount);
+      showSelectedLabel(`$${selectedAmount}`);
+    } else {
+      selectedAmount = null;
+      updatePayPalLink(null);
+      showSelectedLabel('Custom amount');
+    }
+  }
+
+  function updatePayPalLink(amount: number | null) {
+    if (amount) {
+      paypalBtn!.href = `${paypalBase}?amount=${amount}`;
+    } else {
+      paypalBtn!.href = paypalBase;
+    }
+  }
+
+  function showSelectedLabel(text: string) {
+    if (selectedLabel && selectedAmountText) {
+      selectedLabel.classList.remove('hidden');
+      selectedAmountText.textContent = text;
+    }
+  }
+
+  // Tier button clicks
+  tierBtns.forEach(btn => {
+    btn.addEventListener('click', () => selectTier(btn));
+  });
+
+  // Custom amount input
+  customInput?.addEventListener('input', () => {
+    const val = parseFloat(customInput.value);
+    if (val > 0) {
+      updatePayPalLink(val);
+      showSelectedLabel(`$${val}`);
+    } else {
+      updatePayPalLink(null);
+    }
+  });
+</script>
