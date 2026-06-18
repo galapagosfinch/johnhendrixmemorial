@@ -20,6 +20,57 @@ import trailMarkers from '../data/trail-markers.json';
     </div>
   </section>
 
+<!-- Carousel -->
+<section class="bg-parchment-dark py-0">
+  <div class="relative overflow-hidden" id="pw-carousel" aria-label="Prayer Walk photo gallery">
+
+    <!-- Slides -->
+    <div class="flex transition-transform duration-700 ease-in-out" id="pw-track">
+      {[
+        { src: "/images/prayer-walk-entrance.jpg",   alt: "Entrance to the John Hendrix Memorial Prayer Walk" },
+        { src: "/images/prayer-walk-roses.jpg",      alt: "Rose bushes along the prayer walk" },
+        { src: "/images/small-bridge-at-heritage.jpg", alt: "Small bridge at Heritage" },
+        { src: "/images/racoon-in-tree.jpg",         alt: "Raccoon in a tree along the trail" },
+        { src: "/images/crane-on-prayer-walk.jpg",   alt: "Crane on the prayer walk" },
+        { src: "/images/jack-at-wagon.jpg",          alt: "Jack at the wagon" },
+        { src: "/images/railroad-tracks.jpg",        alt: "Railroad tracks beside the old farm site" },
+      ].map((img) => (
+        <div class="w-full shrink-0 aspect-[4/3] bg-ink overflow-hidden">
+          <img
+            src={img.src}
+            alt={img.alt}
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </div>
+      ))}
+    </div>
+
+    <!-- Prev / Next buttons -->
+    <button
+      id="pw-prev"
+      aria-label="Previous photo"
+      class="absolute left-3 top-1/2 -translate-y-1/2 z-10 bg-parchment/80 hover:bg-parchment text-forest rounded-full p-2 shadow transition-colors"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+      </svg>
+    </button>
+    <button
+      id="pw-next"
+      aria-label="Next photo"
+      class="absolute right-3 top-1/2 -translate-y-1/2 z-10 bg-parchment/80 hover:bg-parchment text-forest rounded-full p-2 shadow transition-colors"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+      </svg>
+    </button>
+
+    <!-- Dot indicators -->
+    <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-10" id="pw-dots"></div>
+  </div>
+</section>
+
   <!-- Trail intro -->
   <section class="section-pad bg-parchment">
     <div class="section-container">
@@ -98,16 +149,57 @@ import trailMarkers from '../data/trail-markers.json';
 </Layout>
 
 <script>
-  // Accordion toggle
+  // ── Accordion ──────────────────────────────────────────────────
   document.querySelectorAll('[data-accordion-trigger]').forEach((trigger) => {
     trigger.addEventListener('click', () => {
       const content = trigger.nextElementSibling as HTMLElement;
       const chevron = trigger.querySelector('[data-chevron]') as HTMLElement;
       const isOpen = !content.classList.contains('hidden');
-
       content.classList.toggle('hidden', isOpen);
       chevron.style.transform = isOpen ? '' : 'rotate(180deg)';
       trigger.setAttribute('aria-expanded', String(!isOpen));
     });
   });
+
+  // ── Carousel ───────────────────────────────────────────────────
+  const track   = document.getElementById('pw-track') as HTMLElement;
+  const dotsEl  = document.getElementById('pw-dots')  as HTMLElement;
+  const total   = track?.children.length ?? 0;
+  let current   = 0;
+  let timer: ReturnType<typeof setInterval>;
+
+  // Build dots
+  for (let i = 0; i < total; i++) {
+    const d = document.createElement('button');
+    d.className = 'w-2 h-2 rounded-full bg-parchment/50 transition-colors';
+    d.setAttribute('aria-label', `Go to photo ${i + 1}`);
+    d.addEventListener('click', () => goTo(i));
+    dotsEl.appendChild(d);
+  }
+
+  function goTo(index: number) {
+    current = (index + total) % total;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    dotsEl.querySelectorAll('button').forEach((d, i) => {
+      (d as HTMLElement).className = i === current
+        ? 'w-2 h-2 rounded-full bg-parchment transition-colors'
+        : 'w-2 h-2 rounded-full bg-parchment/50 transition-colors';
+    });
+    resetTimer();
+  }
+
+  function resetTimer() {
+    clearInterval(timer);
+    timer = setInterval(() => goTo(current + 1), 4000);
+  }
+
+  document.getElementById('pw-prev')?.addEventListener('click', () => goTo(current - 1));
+  document.getElementById('pw-next')?.addEventListener('click', () => goTo(current + 1));
+
+  goTo(0); // init dots + start autoplay
+
+  // Pause on hover / focus
+  const carousel = document.getElementById('pw-carousel');
+  carousel?.addEventListener('mouseenter', () => clearInterval(timer));
+  carousel?.addEventListener('mouseleave', () => resetTimer());
 </script>
