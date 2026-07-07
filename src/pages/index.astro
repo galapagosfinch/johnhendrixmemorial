@@ -31,83 +31,111 @@ import Layout from '../layouts/Layout.astro';
   <!-- Copper divider -->
   <div class="copper-divider"></div>
 
-  <!-- John's Story -->
+  <!-- John's Story: Timeline + Sticky Video Sidebar -->
   <section class="section-pad bg-parchment">
-    <div class="section-container">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <span class="eyebrow">His Story</span>
-      <h2 class="font-display text-section text-forest mb-8">Meet John Hendrix</h2>
-      <div class="max-w-none text-ink-soft space-y-5 text-lg leading-relaxed">
-        <p>
-          John Hendrix and his wife Julia had five children when diphtheria hit their community
-          around the turn of the 20th century. Baby Ethel got sick and died. The family was turned
-          upside down with turmoil. Julia couldn't cope with her grief, so she took the other children
-          and boarded a wagon headed for Arkansas — after which John never saw any of them again.
-        </p>
-        <p>
-          As people often do during a time of trial, John began asking God why this was happening to him.
-          He took long walks in the woods of his property praying for understanding. One day while in the
-          woods he heard a thunderous voice promise that if he would sleep with his head on the ground for
-          forty nights, he would be shown the future of his land.
-        </p>
-        <p>
-          So he did it. He went to the woods and chose a spot near a fence row. Neighbors brought him soup
-          and covered him with blankets. One cold morning someone found him with his hair frozen to the ground.
-        </p>
-        <p>
-          Forty days later John reappeared from the woods and said he had been shown visions of the future.
-          He said a city would be built on Black Oak Ridge for thousands of people. He said big factories
-          would be built down in Bear Creek Valley where they would be "building things." He said what was
-          going to be built would help win one of the greatest wars that would ever be.
-        </p>
+      <h2 class="font-display text-section text-forest mb-10">Meet John Hendrix</h2>
 
-        <div class="pullquote">
-          <p>"I guess ol' John wasn't crazy after all."</p>
-          <cite>— John's neighbors, 1942</cite>
+      <div class="grid lg:grid-cols-5 gap-12 lg:gap-10 items-start">
+
+        <!-- Timeline (left, wider column) -->
+        <div class="lg:col-span-3">
+          <ol class="relative border-l-2 border-copper/30 pl-8 space-y-10">
+
+            <li class="relative">
+              <span class="absolute -left-[calc(2rem+7px)] top-1 w-3 h-3 rounded-full bg-copper"></span>
+              <span class="font-ui text-copper text-sm font-semibold tracking-wide">1900</span>
+              <h3 class="font-display text-xl text-forest mb-2">The Tragedy</h3>
+              <p class="text-ink-soft leading-relaxed">
+                John Hendrix and his wife Julia had five children when diphtheria hit their community
+                around the turn of the 20th century. Baby Ethel got sick and died. The family was turned
+                upside down with turmoil. Julia couldn't cope with her grief, so she took the other children
+                and boarded a wagon headed for Arkansas — after which John never saw any of them again.
+              </p>
+            </li>
+
+            <li class="relative">
+              <span class="absolute -left-[calc(2rem+7px)] top-1 w-3 h-3 rounded-full bg-copper"></span>
+              <span class="font-ui text-copper text-sm font-semibold tracking-wide">1901</span>
+              <h3 class="font-display text-xl text-forest mb-2">Forty Nights in the Woods</h3>
+              <p class="text-ink-soft leading-relaxed">
+                As people often do during a time of trial, John began asking God why this was happening to him.
+                He took long walks in the woods of his property praying for understanding. One day while in the
+                woods he heard a thunderous voice promise that if he would sleep with his head on the ground for
+                forty nights, he would be shown the future of his land. So he did it. He chose a spot near a
+                fence row. Neighbors brought him soup and covered him with blankets. One cold morning someone
+                found him with his hair frozen to the ground.
+              </p>
+            </li>
+
+            <li class="relative">
+              <span class="absolute -left-[calc(2rem+7px)] top-1 w-3 h-3 rounded-full bg-copper"></span>
+              <span class="font-ui text-copper text-sm font-semibold tracking-wide">1901</span>
+              <h3 class="font-display text-xl text-forest mb-2">The Visions</h3>
+              <p class="text-ink-soft leading-relaxed">
+                Forty days later John reappeared from the woods and said he had been shown visions of the future.
+                He said a city would be built on Black Oak Ridge for thousands of people. He said big factories
+                would be built down in Bear Creek Valley where they would be "building things." He said what was
+                going to be built would help win one of the greatest wars that would ever be.
+              </p>
+            </li>
+
+            <li class="relative">
+              <span class="absolute -left-[calc(2rem+7px)] top-1 w-3 h-3 rounded-full bg-copper"></span>
+              <span class="font-ui text-copper text-sm font-semibold tracking-wide">1942</span>
+              <h3 class="font-display text-xl text-forest mb-2">The Fulfillment</h3>
+              <p class="text-ink-soft leading-relaxed">
+                In 1915 John Hendrix died of tuberculosis. In 1942, the War Department seized this primitive
+                community — still without electricity — for a war emergency. People who had heard John's
+                predictions finally understood what he had seen in those forty nights in the woods.
+              </p>
+              <div class="pullquote mt-6">
+                <p>"I guess ol' John wasn't crazy after all."</p>
+                <cite>— John's neighbors, 1942</cite>
+              </div>
+            </li>
+
+          </ol>
         </div>
 
-        <p>
-          In 1915 John Hendrix died of tuberculosis. In 1942, the War Department seized this primitive
-          community — still without electricity — for a war emergency. People who had heard John's
-          predictions finally understood what he had seen in those forty nights in the woods.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- YouTube Documentary -->
-  <section class="section-pad bg-parchment-dark">
-    <div class="section-container">
-      <span class="eyebrow">Documentary</span>
-      <h2 class="font-display text-section text-forest mb-4">See John's Story on Film</h2>
-      <p class="text-ink-soft mb-8 max-w-xl">
-        John Hendrix as portrayed by Jack Mansfield. Video courtesy of Secret City Films.
-      </p>
-      <div
-        class="relative w-full bg-ink rounded-sm overflow-hidden"
-        style="padding-bottom: 56.25%;"
-        data-youtube-id="BdaB8fVaIps"
-        id="youtube-embed"
-      >
-        <div id="youtube-placeholder" class="absolute inset-0 flex items-center justify-center cursor-pointer group">
-          <img
-            src="https://img.youtube.com/vi/BdaB8fVaIps/hqdefault.jpg"
-            alt="Documentary film about John Hendrix, the Prophet of Oak Ridge"
-            class="absolute inset-0 w-full h-full object-cover opacity-80"
-            loading="lazy"
-          />
-          <div class="relative z-10 w-16 h-16 bg-copper rounded-full flex items-center justify-center group-hover:bg-copper-light transition-colors shadow-lg">
-            <i class="ti ti-player-play text-parchment text-2xl ml-0.5" aria-hidden="true"></i>
+        <!-- Sidebar: video + CTA (right, narrower column, sticky on desktop) -->
+        <div class="lg:col-span-2 lg:sticky lg:top-24">
+          <div
+            class="relative w-full bg-ink rounded-sm overflow-hidden"
+            style="padding-bottom: 56.25%;"
+            data-youtube-id="BdaB8fVaIps"
+            id="youtube-embed"
+          >
+            <div id="youtube-placeholder" class="absolute inset-0 flex items-center justify-center cursor-pointer group">
+              <img
+                src="https://img.youtube.com/vi/BdaB8fVaIps/hqdefault.jpg"
+                alt="Documentary film about John Hendrix, the Prophet of Oak Ridge"
+                class="absolute inset-0 w-full h-full object-cover opacity-80"
+                loading="lazy"
+              />
+              <div class="relative z-10 w-16 h-16 bg-copper rounded-full flex items-center justify-center group-hover:bg-copper-light transition-colors shadow-lg">
+                <i class="ti ti-player-play text-parchment text-2xl ml-0.5" aria-hidden="true"></i>
+              </div>
+            </div>
+            <iframe
+              id="youtube-iframe"
+              class="absolute inset-0 w-full h-full hidden"
+              src=""
+              title="John Hendrix documentary film"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
           </div>
+          <p class="text-stone font-ui text-sm mt-3">
+            Portrayed by Jack Mansfield. Video courtesy of Secret City Films.
+          </p>
+          <a href="/prayerwalk" class="btn-donate w-full text-center mt-6 block">
+            <i class="ti ti-map-pin mr-2" aria-hidden="true"></i>Walk the Trail
+          </a>
         </div>
-        <iframe
-          id="youtube-iframe"
-          class="absolute inset-0 w-full h-full hidden"
-          src=""
-          title="John Hendrix documentary film"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
+
       </div>
     </div>
   </section>
