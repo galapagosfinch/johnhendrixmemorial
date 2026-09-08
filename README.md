@@ -23,7 +23,7 @@ src/
 │   ├── index.astro            ← Homepage (Meet John Hendrix)
 │   ├── prayerwalk.astro       ← Prayer Walk trail guide
 │   ├── books.astro            ← Books resource page
-│   ├── geocaching.astro       ← Geocaching page
+│   ├── geocaching.astro       ← Geocaching page (archived)
 │   ├── find-us.astro          ← Directions and map
 │   └── donate.astro           ← Donation page
 └── styles/
@@ -56,7 +56,7 @@ Do a full review on mobile and desktop before launch.
 
 #### Custom domain
 Point `johnhendrixmemorial.com` to Cloudflare Pages (update DNS at iPage).
-
+    4
 ---
 
 ### 🗺️ Phase 2
