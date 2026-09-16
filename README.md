@@ -49,15 +49,14 @@ public/
 ### 🔧 Short-term TODO
 
 #### Trail markers
-Add trail marker descriptions to trail-markers.json
-Revert commit "Removed Along the Trail section" to unhide accordian section and reinstate import. 
+Edit `src/data/trail-markers.json` — no code changes needed. **8 marker descriptions still need to be written.**
 
 #### Visual review
 Do a full review on mobile and desktop before launch.
 
 #### Custom domain
 Point `johnhendrixmemorial.com` to Cloudflare Pages (update DNS at iPage).
-
+    4
 ---
 
 ### 🗺️ Phase 2
