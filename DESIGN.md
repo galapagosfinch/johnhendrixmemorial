@@ -1,7 +1,7 @@
 # Technical Design Document: Website Rebuild on Cloudflare Pages
 
 **Project:** John Hendrix Memorial Prayer Walk Digital Modernization  
-**Architect:** Software Architecture & Infrastructure Team  
+**Architect:** Steve Finch
 
 ---
 
