@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import trailMarkers from '../data/trail-markers.json';
+import trailMarkers from '../data/trail-markers.json'; 
 ---
 
 <Layout
@@ -22,6 +22,7 @@ import trailMarkers from '../data/trail-markers.json';
 
 <!-- Carousel -->
 <section class="bg-parchment-dark py-0">
+  <div class="md:max-w-4xl md:mx-auto md:px-6 lg:px-8">
   <div class="relative overflow-hidden" id="pw-carousel" aria-label="Prayer Walk photo gallery">
 
     <!-- Slides -->
@@ -69,6 +70,7 @@ import trailMarkers from '../data/trail-markers.json';
     <!-- Dot indicators -->
     <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-10" id="pw-dots"></div>
   </div>
+  </div>
 </section>
 
   <!-- Trail intro -->
@@ -90,7 +92,6 @@ import trailMarkers from '../data/trail-markers.json';
     </div>
   </section>
 
-  <!-- Trail markers accordion -->
   <section class="section-pad bg-parchment-dark">
     <div class="section-container">
       <span class="eyebrow">Along the Trail</span>
@@ -129,7 +130,7 @@ import trailMarkers from '../data/trail-markers.json';
         ))}
       </div>
     </div>
-  </section>
+  </section>  
 
 <!-- Gravesite section -->
 <section class="section-pad bg-parchment">
