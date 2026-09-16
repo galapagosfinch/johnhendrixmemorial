@@ -1,58 +1,58 @@
 [
   {
     "id": 1,
-    "title": "The Prophet's Land",
-    "description": "PLACEHOLDER — Add description of Marker 1 here. This marker covers John Hendrix's original farmland along Hendrix Creek.",
+    "title": "Hendrix Drive Entrance",
+    "description": "Young John and his wife JuliaAnn lived a primitive life on their small 30 acre farm until they lost their youngest of four children to diphtheria. JuliaAnn was overcome with grief and took the children with her to Arkansas, never to see John again.",
     "imageUrl": "",
-    "imageAlt": "Trail marker 1 — The Prophet's Land"
+    "imageAlt": "Trail marker 1 — Hendrix Drive Entrance"
   },
   {
     "id": 2,
-    "title": "Forty Nights in the Woods",
-    "description": "PLACEHOLDER — Add description of Marker 2 here. This marker tells the story of John's forty nights sleeping with his head on the ground.",
+    "title": "Creekside Rest",
+    "description": "As is common when someone is suffering, John turned to God for answers. What he heard was a \"thunderous\" voice telling him if he would lie on the ground for 40 nights that God would tell him the future of his land. So he did it.",
     "imageUrl": "",
-    "imageAlt": "Trail marker 2 — Forty Nights in the Woods"
+    "imageAlt": "Trail marker 2 — Creekside Rest"
   },
   {
     "id": 3,
-    "title": "The Visions",
-    "description": "PLACEHOLDER — Add description of Marker 3 here. This marker recounts the prophecies John shared with his neighbors.",
+    "title": "Old Wagon Road",
+    "description": "Read John's prophecies and how he foretold \"What they build here will help toward winning one of the greatest wars that will ever be…I've seen it; it's coming.\"",
     "imageUrl": "",
-    "imageAlt": "Trail marker 3 — The Visions"
+    "imageAlt": "Trail marker 3 — Old Wagon Road"
   },
   {
     "id": 4,
-    "title": "Bear Creek Valley",
-    "description": "PLACEHOLDER — Add description of Marker 4 here. John predicted great factories would be built in Bear Creek Valley.",
+    "title": "Healing Springs Bridge",
+    "description": "John became known as \"The Prophet\" and received mixed reactions from the community. Nine-year-old James Braden got the last spankin' he ever got for believin' John.",
     "imageUrl": "",
-    "imageAlt": "Trail marker 4 — Bear Creek Valley"
+    "imageAlt": "Trail marker 4 — Healing Springs Bridge"
   },
   {
     "id": 5,
-    "title": "The Community of Black Oak Ridge",
-    "description": "PLACEHOLDER — Add description of Marker 5 here. John foretold a great city would rise on Black Oak Ridge.",
+    "title": "John's New Family",
+    "description": "John remarried Martha Jane Whitehead Gregory from the foothills of the Great Smoky Mountains. She brought six of her seven children with her and the oldest was already nearby. They brought new life back to the farm. Together she and John had a boy they named Curtis.",
     "imageUrl": "",
-    "imageAlt": "Trail marker 5 — The Community of Black Oak Ridge"
+    "imageAlt": "Trail marker 5 — John's New Family"
   },
   {
     "id": 6,
-    "title": "The Manhattan Project",
-    "description": "PLACEHOLDER — Add description of Marker 6 here. In 1942 the War Department seized this land to build the secret city of Oak Ridge.",
+    "title": "The Old Home Site and Robertsville Community",
+    "description": "All indoor family life took place in a 10'x16' one-room cabin. That is until John's stepchildren built three more small houses on his 60 acres. The groundcover was common periwinkle, which meant they did not have to mow a lawn.",
     "imageUrl": "",
-    "imageAlt": "Trail marker 6 — The Manhattan Project"
+    "imageAlt": "Trail marker 6 — The Old Home Site and Robertsville Community"
   },
   {
     "id": 7,
-    "title": "Hendrix Creek",
-    "description": "PLACEHOLDER — Add description of Marker 7 here. The creek that bears John's name still flows through this property today.",
+    "title": "The Visions Become a Reality",
+    "description": "The government took John's farm and 59,000 acres to build the visions John had seen. His son Curtis was displaced with everyone else but came back to get a job in the secret city. Curt wrote a letter to his mother saying, \"I'm glad the Flatwoods country is helping knock the props from under Hitler and his gang. He can't stand it much longer. If whatever they make (at Y-12) is as Uncle Bill Cheshire's moonshine used to be, Good-bye Hitler!\"",
     "imageUrl": "",
-    "imageAlt": "Trail marker 7 — Hendrix Creek"
+    "imageAlt": "Trail marker 7 — The Visions Become a Reality"
   },
   {
     "id": 8,
-    "title": "The Legacy",
-    "description": "PLACEHOLDER — Add description of Marker 8 here. John Hendrix died in 1915 of tuberculosis, thirty years before his prophecies were fulfilled.",
+    "title": "Final Chapter",
+    "description": "John had predicted he would not be alive to see the visions fulfilled, and he died in 1915 during World War 1. When that war ended there were no factories built, no city, thousands of people had not moved into Robertsville. But when the prophecies were fulfilled during World War 2, John became known as The Prophet of Oak Ridge. His gravesite is up the road to the left of 127 Hendrix Drive.",
     "imageUrl": "",
-    "imageAlt": "Trail marker 8 — The Legacy"
+    "imageAlt": "Trail marker 8 — Final Chapter"
   }
 ]
