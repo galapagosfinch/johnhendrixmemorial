@@ -48,15 +48,16 @@ public/
 
 ### 🔧 Short-term TODO
 
-#### Trail markers
-Edit `src/data/trail-markers.json` — no code changes needed. **8 marker descriptions still need to be written.**
+### Pre-selected Donate buttons
+Create new URLs at PayPal, one for each of the pre-selectable amounts.
+Update donate.astro to use those URLs when the button is selected.
+
+#### Custom domain
+Point `johnhendrixmemorial.com` to Cloudflare Pages (Transfer initiated)
 
 #### Visual review
 Do a full review on mobile and desktop before launch.
 
-#### Custom domain
-Point `johnhendrixmemorial.com` to Cloudflare Pages (update DNS at iPage).
-    4
 ---
 
 ### 🗺️ Phase 2
