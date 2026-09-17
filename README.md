@@ -48,15 +48,15 @@ public/
 
 ### 🔧 Short-term TODO
 
-#### Trail markers
-Add trail marker descriptions to trail-markers.json
-Revert commit "Removed Along the Trail section" to unhide accordian section and reinstate import. 
+### Pre-selected Donate buttons
+Create new URLs at PayPal, one for each of the pre-selectable amounts.
+Update donate.astro to use those URLs when the button is selected.
+
+#### Custom domain
+Point `johnhendrixmemorial.com` to Cloudflare Pages (Transfer initiated)
 
 #### Visual review
 Do a full review on mobile and desktop before launch.
-
-#### Custom domain
-Point `johnhendrixmemorial.com` to Cloudflare Pages (update DNS at iPage).
 
 ---
 

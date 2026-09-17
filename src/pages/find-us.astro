@@ -5,7 +5,7 @@ const location = {
   address: "Hendrix Drive at Hampshire Circle, Oak Ridge, TN 37830",
   directions: "Located on Hendrix Drive at Hampshire Circle in Oak Ridge.",
   geoLink: "geo:36.016966,-84.230019",
-  googleMapsUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3229.5!2d-84.230019!3d36.016966!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4885c3477411053a%3A0x5026a17ec9cb1604!2sJohn+Hendrix+Memorial+Prayer+Walk!5e0!3m2!1sen!2sus!4v1000000000000",
+  googleMapsUrl: "https://www.google.com/maps?q=John+Hendrix+Memorial+Prayer+Walk,+Oak+Ridge,+TN&z=18&output=embed",
   phone: "8657128027",
 };
 ---
@@ -37,16 +37,15 @@ const location = {
           <span class="eyebrow">Address</span>
           <h2 class="font-display text-2xl text-forest mb-4">Trailhead Location</h2>
           <address class="not-italic text-ink-soft text-lg leading-relaxed mb-6">
-            Hendrix Drive<br />
+            Hendrix Drive across from Hampshire Court<br />
             Oak Ridge, TN 37830<br />
-            <span class="text-base">(across from Hampshire Court)</span>
           </address>
           <div class="flex flex-wrap gap-3">
             <a href={location.geoLink} class="btn-primary text-sm">
               Open in Maps App
             </a>
             <a
-              href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(location.address)}`}
+              href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(location.address)}`} 
               target="_blank"
               rel="noopener noreferrer"
               class="btn-secondary text-sm"
