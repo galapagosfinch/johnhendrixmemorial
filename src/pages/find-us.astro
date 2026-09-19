@@ -100,16 +100,28 @@ const location = {
       <span class="eyebrow">Map</span>
       <h2 class="font-display text-2xl text-forest mb-6">Trail Location</h2>
 
-      <!-- Static preview loads first; clicking mounts the iframe -->
-      <div class="relative w-full rounded-sm overflow-hidden border border-stone-light bg-ink" style="height: 400px;">
-        <div
+      <!-- Static preview image loads first; clicking mounts the interactive iframe -->
+      <div id="map-box" class="relative w-full aspect-[2/1] md:aspect-auto md:h-[400px] rounded-sm overflow-hidden border border-stone-light bg-forest-light">
+        <button
           id="map-placeholder"
-          class="absolute inset-0 flex flex-col items-center justify-center gap-4 cursor-pointer bg-forest-light hover:bg-forest transition-colors"
+          type="button"
+          class="group absolute inset-0 w-full h-full cursor-pointer"
+          aria-label="Load interactive map of the Prayer Walk trailhead"
         >
-          <span class="text-5xl">🗺️</span>
-          <p class="text-parchment font-ui font-semibold">Tap to load interactive map</p>
-          <p class="text-parchment-dark text-sm font-ui">Hendrix Drive, Oak Ridge, TN</p>
-        </div>
+          <img
+            src="/images/map-preview.jpg"
+            alt="Map preview showing the Prayer Walk trailhead on Hendrix Drive in Oak Ridge, Tennessee"
+            width="1068"
+            height="530"
+            class="absolute inset-0 w-full h-full object-cover object-bottom"
+            loading="lazy"
+            decoding="async"
+          />
+          <span class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></span>
+          <span class="btn-primary text-sm shadow-lg absolute top-4 left-1/2 -translate-x-1/2 pointer-events-none">
+            Tap to load interactive map
+          </span>
+        </button>
         <iframe
           id="map-iframe"
           class="absolute inset-0 w-full h-full hidden"
@@ -131,6 +143,7 @@ const location = {
 </Layout>
 
 <script>
+  const box = document.getElementById('map-box');
   const placeholder = document.getElementById('map-placeholder');
   const iframe = document.getElementById('map-iframe') as HTMLIFrameElement | null;
 
@@ -139,6 +152,9 @@ const location = {
       iframe.src = iframe.dataset.src || '';
       iframe.classList.remove('hidden');
       placeholder.classList.add('hidden');
+      // On phones the preview is 2:1 to keep Google's credit line visible; give the live map more height
+      if (box) { box.style.aspectRatio = 'auto'; box.style.height = '400px'; }
+      iframe.focus();
     }
   });
 </script>
