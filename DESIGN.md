@@ -92,7 +92,7 @@ The application is decomposed into a shared layout plus six pages built as Astro
 
 ### 3.7 Donate to the Vision (Fundraising)
 * **Analysis:** Drives the core charitable objective of building a physical Memorial Chapel to preserve pre-Oak Ridge family artifacts, photos, and histories.
-* **Implementation:** A static page anchored by the Memorial Chapel vision and rendering image. Below it, an interactive tier selector (Trail Supporter, Creek Keeper, Chapel Builder, and a custom amount) builds the PayPal link for the chosen amount, and the *Donate with PayPal* button opens PayPal's hosted checkout in a new tab. A closing appeal repeats the volunteer and phone contact.
+* **Implementation:** A static page anchored by the Memorial Chapel vision and rendering image. Below it is an interactive tier selector (Trail Supporter, Creek Keeper, Chapel Builder, and a custom amount).  Selecting a tier (Trail Supporter, Creek Keeper, Chapel Builder, or Your Own Amount) switches the Donate with PayPal button to that tier's own PayPal payment link. The open-amount tier lets the donor type the amount on PayPal. The *Donate with PayPal* button opens PayPal's hosted checkout in a new tab. A closing appeal repeats the volunteer and phone contact.
 * **Stripe status:** Stripe is not yet wired in. There is no Stripe account, and the page contains no Stripe code. A placeholder Apple Pay domain-association file already sits in `public/.well-known/` so the domain-verification step is ready when Stripe is set up (see 4.1).
 * **Progress meter:** A live campaign progress meter backed by Cloudflare D1 is a Phase 3 candidate once donation volume warrants the additional infrastructure.
 
@@ -198,7 +198,7 @@ WCAG AA (4.5:1 for normal text) is the standard. Primary text, headings, buttons
 
 Volunteer maintainability is a first-class constraint. Changing the words, photos, links, or amounts on the site should not require understanding layout or styling code. Where content is list-shaped, it lives as plain data (a JSON file for trail markers, and simple arrays at the top of each page for books, retailers, donation tiers, and geocache cards). Prose-heavy content, such as the homepage timeline and the trail rules on Find Us, is written directly in page markup, where a volunteer edits only the visible text and copies an existing block to add an entry. Sections that are not ready are hidden by commenting them out rather than deleting them, so re-enabling is a one-step change. The README has the practical guide to where each kind of content lives.
 
-Two known exceptions to editing in a single place are listed in the README: the phone number appears in several files, and the PayPal link is set in two places in `donate.astro`.
+One known exception to editing in a single place is listed in the README: the phone number appears in several files.
 
 ---
 
@@ -230,7 +230,7 @@ Deploy and preview how-tos are in the README.
 
 | Phase | Scope |
 | :--- | :--- |
-| **Phase 1: Launch** | All six static pages, Astro + Tailwind, Cloudflare Pages hosting, PayPal donation with amount pre-selection, click-to-load Google Maps and YouTube embeds, static Geocaching page, and custom-domain cutover. No backend required. |
+| **Phase 1: Launch** | All six static pages, Astro + Tailwind, Cloudflare Pages hosting, PayPal donation with a payment link per preset amount, click-to-load Google Maps and YouTube embeds, static Geocaching page, and custom-domain cutover. No backend required. |
 | **Phase 2: Stripe / Apple Pay & Geocaching** | Add Stripe Payment Links (or Square Payment Links) with Apple Pay and Google Pay, and complete the Apple Pay domain verification. Re-activate the archived geocaches and restore real geocacher testimonials. Still no backend required. |
 | **Phase 3: Backend Enrichment** | Geocaching API integration (Cloudflare Workers) and a live donation campaign progress meter (Cloudflare D1). Triggered by audience growth and fundraising volume. |
 

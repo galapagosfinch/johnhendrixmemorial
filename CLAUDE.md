@@ -150,7 +150,7 @@ to `global.css` rather than copy-pasting long utility strings.
 
 ### Ask Steve first (do not change on your own)
 
-- **Payment and donation links** in `donate.astro` (PayPal URLs, the `stripeUrl` placeholder).
+- **Payment and donation links** in `donate.astro` (PayPal URLs, the `stripeUrl` once added).
   Wrong links mean lost or misdirected donations.
 - The contents of `public/.well-known/apple-developer-merchantid-domain-association`.
 - **DNS, domain, or Cloudflare settings.** The custom-domain move is in progress and blocked

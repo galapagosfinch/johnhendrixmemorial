@@ -57,8 +57,7 @@ Changing words, photos, links, or amounts should never require touching layout o
 | Homepage timeline | The `<li>` entries in `src/pages/index.astro`. To add an entry, copy an existing `<li>` block and change the year, heading, and text. |
 | Books (title, cover, description, price, Amazon link) | The `books` list at the top of `src/pages/books.astro` |
 | Local retailers | The `retailers` list at the top of `src/pages/books.astro` |
-| Donation tiers (amount, name, description) | The `tiers` list at the top of `src/pages/donate.astro` |
-| PayPal link | The PayPal constants in `src/pages/donate.astro` (one at the top of the file, one in the script at the bottom; keep them in sync) |
+| Donation tiers (amount, name, description, PayPal link) | The tiers list at the top of src/pages/donate.astro. Each tier has its own PayPal payment link. The amount shown on a card is display-only, so if you change an amount, create a new payment link in PayPal and paste it into that tier's url. |
 | Geocache cards and testimonials | The `caches` and `testimonials` lists at the top of `src/pages/geocaching.astro` |
 | Address, map link, coordinates | The `location` object at the top of `src/pages/find-us.astro` (the trail rules are in the page body) |
 | Header, footer, mobile action bar | `src/layouts/Layout.astro` |
@@ -161,16 +160,13 @@ Merging to the main branch triggers a production build automatically. There is n
 - Homepage with timeline and sticky video sidebar
 - Trail marker text filled in, with the marker accordion live on the Prayer Walk page
 - Find Us page with updated coordinates and a click-to-load map
-- Interactive donation tier selector with PayPal pre-fill
+- Interactive donation tier selector with dedicated PayPal URLs per tier
 - Both geocache URLs added (GC5JYGG markers 1–4, GC5JYFR markers 5–8)
 - Deployed to Cloudflare Pages
 
 ---
 
 ## Short-term TODO
-
-### Donations
-- **Pre-selected Donate buttons:** Create a new PayPal URL for each pre-selectable amount, then update `donate.astro` so each preset button uses its own URL.
 
 ### Domain and hosting
 - **Custom domain:** Point `johnhendrixmemorial.com` to Cloudflare Pages (transfer initiated).

@@ -1,14 +1,18 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-const paypalBusinessId = "N5GV83928V65L";
-
+// Each preset has its own PayPal payment link. To change an amount or label,
+// edit the tier here and create a matching payment link in PayPal.
+// The tier with amount: null is the open-amount link (donor types the amount on PayPal).
 const tiers = [
-  { amount: 25,    label: "Trail Supporter",  description: "Helps maintain the trail and signage." },
-  { amount: 50,    label: "Creek Keeper",      description: "Supports ongoing trail improvements." },
-  { amount: 100,   label: "Chapel Builder",    description: "Directly funds the Memorial Chapel." },
-  { amount: null,  label: "Your Own Amount",   description: "Every gift, large or small, makes a difference." },
+  { amount: 25,    label: "Trail Supporter",  description: "Helps maintain the trail and signage.",            url: "https://www.paypal.com/ncp/payment/H23EFG3PNAAHW" },
+  { amount: 50,    label: "Creek Keeper",      description: "Supports ongoing trail improvements.",             url: "https://www.paypal.com/ncp/payment/B3ELXT6UDPJH6" },
+  { amount: 100,   label: "Chapel Builder",    description: "Directly funds the Memorial Chapel.",              url: "https://www.paypal.com/ncp/payment/36YZB34F9DJDU" },
+  { amount: null,  label: "Your Own Amount",   description: "Every gift, large or small, makes a difference.",  url: "https://www.paypal.com/ncp/payment/RSDBL7W97ZSR6" },
 ];
+
+// Before a donor picks a tier, the button goes to the open-amount page.
+const defaultUrl = tiers.find(t => t.amount === null)!.url;
 ---
 
 <Layout
@@ -78,6 +82,8 @@ const tiers = [
             class="tier-btn bg-parchment border-2 border-stone-light rounded-sm p-6 text-center flex flex-col
                    hover:border-forest transition-colors duration-200 cursor-pointer"
             data-amount={tier.amount ?? ""}
+            data-label={tier.label}
+            data-url={tier.url}
             data-index={i}
           >
             <span class="font-display text-4xl text-forest mb-2">
@@ -89,29 +95,11 @@ const tiers = [
         ))}
       </div>
 
-      <!-- Custom amount input (shown when "Any" is selected) -->
-      <div id="custom-amount-wrapper" class="hidden mb-8 max-w-xs">
-        <label for="custom-amount" class="font-ui text-sm font-semibold text-ink mb-2 block">
-          Enter your amount (USD)
-        </label>
-        <div class="flex items-center border-2 border-forest rounded-sm overflow-hidden">
-          <span class="bg-forest text-parchment px-4 py-3 font-display text-lg">$</span>
-          <input
-            id="custom-amount"
-            type="number"
-            min="1"
-            step="1"
-            placeholder="0"
-            class="flex-1 px-4 py-3 bg-parchment text-ink font-ui text-lg focus:outline-none"
-          />
-        </div>
-      </div>
-
       <!-- Donate button -->
       <div class="flex flex-col sm:flex-row gap-4 items-start">
         <a
           id="paypal-btn"
-          href={`https://www.paypal.com/ncp/payment/${paypalBusinessId}`}
+          href={defaultUrl}
           target="_blank"
           rel="noopener noreferrer"
           class="btn-donate text-center"
@@ -156,69 +144,30 @@ const tiers = [
 </Layout>
 
 <script>
-  const paypalBase = "https://www.paypal.com/ncp/payment/N5GV83928V65L";
-  const tierBtns = document.querySelectorAll('.tier-btn');
+  const tierBtns = document.querySelectorAll<HTMLButtonElement>('.tier-btn');
   const paypalBtn = document.getElementById('paypal-btn') as HTMLAnchorElement;
-  const customWrapper = document.getElementById('custom-amount-wrapper');
-  const customInput = document.getElementById('custom-amount') as HTMLInputElement;
   const selectedLabel = document.getElementById('selected-label');
   const selectedAmountText = document.getElementById('selected-amount-text');
 
-  let selectedAmount: number | null = null;
-  let isCustom = false;
-
-  function selectTier(btn: Element) {
-    // Reset all buttons
+  function selectTier(btn: HTMLButtonElement) {
     tierBtns.forEach(b => b.classList.remove('tier-active'));
-
-    // Highlight selected
     btn.classList.add('tier-active');
 
-    const amount = (btn as HTMLElement).dataset.amount;
-    isCustom = amount === "";
+    // Each tier carries its own PayPal payment link
+    paypalBtn.href = btn.dataset.url!;
 
-    // Show/hide custom input
-    customWrapper?.classList.toggle('hidden', !isCustom);
+    const { amount, label } = btn.dataset;
+    const text = amount
+      ? `$${amount} \u2013 ${label}`
+      : 'Your own amount (you\u2019ll enter it on PayPal)';
 
-    if (!isCustom && amount) {
-      selectedAmount = parseInt(amount);
-      updatePayPalLink(selectedAmount);
-      showSelectedLabel(`$${selectedAmount}`);
-    } else {
-      selectedAmount = null;
-      updatePayPalLink(null);
-      showSelectedLabel('Custom amount');
-    }
-  }
-
-  function updatePayPalLink(amount: number | null) {
-    if (amount) {
-      paypalBtn!.href = `${paypalBase}?amount=${amount}`;
-    } else {
-      paypalBtn!.href = paypalBase;
-    }
-  }
-
-  function showSelectedLabel(text: string) {
     if (selectedLabel && selectedAmountText) {
       selectedLabel.classList.remove('hidden');
       selectedAmountText.textContent = text;
     }
   }
 
-  // Tier button clicks
   tierBtns.forEach(btn => {
     btn.addEventListener('click', () => selectTier(btn));
-  });
-
-  // Custom amount input
-  customInput?.addEventListener('input', () => {
-    const val = parseFloat(customInput.value);
-    if (val > 0) {
-      updatePayPalLink(val);
-      showSelectedLabel(`$${val}`);
-    } else {
-      updatePayPalLink(null);
-    }
   });
 </script>
